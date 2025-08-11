@@ -1,3 +1,9 @@
 target/
 dbt_packages/
 logs/
+app/
+.idea/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/

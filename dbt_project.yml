@@ -4,6 +4,10 @@
 name: 'dbt_gcp_project'
 version: '1.0.0'
 
+  # This is a placeholder for any variables you might want to use in your dbt project.
+  # You can define them here and reference them in your models, tests, or macros.
+  # user_name: 'default_user_name_for_this_project'
+
 # This setting configures which "profile" dbt uses for this project.
 profile: 'dbt_gcp_project'
 
@@ -23,7 +27,6 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
@@ -33,10 +36,29 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dbt_gcp_terraform:
     +materialized: view
+    mart:
+      +materialized: table
+      config:
+        +schema: 'gold_{{ vars.env }}'
     dim:
       +materialized: table
-    #src:
-    #  +materialized: ephemeral
+      config:
+        +schema: 'gold_{{ vars.env }}'
+    fct:
+      +materialized: incremental
+      config:
+        +schema: 'gold_{{ vars.env }}'
+    stg:
+      +materialized: view
+      config:
+        +schema: 'silver_{{ vars.env }}' 
+    int:
+      +materialized: view
+      config:
+        +schema: 'silver_{{ vars.env }}'
+    src:
+      +materialized: ephemeral
 
-#vars:
-#  user_name: default_user_name_for_this_project
+# This section is for variables that you want to use in your dbt project.
+vars:
+  env: 'dev'
