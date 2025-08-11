@@ -7,8 +7,13 @@ RUN apt-get update \
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir \
     dbt_bigquery==1.10.1 \
-    dbt-core=1.10.0 \
-    pytz=2024.1
+    dbt-core==1.10.0 \
+    pytz==2024.1
+
+# Create user and group for dbt
+RUN groupadd -r dbt && useradd -r -g dbt -u 1000 dbt
+
+COPY /Users/guoleyang/.dbt/profiles.yml /app/profiles
 
 # Create dbt profiles directory
 WORKDIR /usr/src/dbt/dbt_project
@@ -17,4 +22,4 @@ WORKDIR /usr/src/dbt/dbt_project
 COPY . .
 
 # Set the working directory to the dbt project
-CMD ["dbt", "build", "--profiles-dir", "/opt/dbt/profiles"]
+CMD ["dbt", "compile", "--profiles-dir", "/app/profiles"]
