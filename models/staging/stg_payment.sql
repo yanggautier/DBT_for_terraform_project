@@ -6,4 +6,4 @@ SELECT
     amount,
     payment_date
 FROM
-    {{ source('raw_data', 'payment') }}
+    {{ source('raw_data', 'payment') }} 

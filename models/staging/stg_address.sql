@@ -4,7 +4,6 @@ SELECT
     address2,
     district,
     city_id,
-    postal_code,
-    phone
+    postal_code
 FROM
     {{ source('raw_data', 'address') }}

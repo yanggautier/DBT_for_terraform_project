@@ -34,21 +34,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  dbt_gcp_terraform:
+  dbt_dvd_rental:
     +materialized: view
-    mart:
-      +materialized: table
-      config:
-        +schema: 'gold_{{ vars.env }}'
-    dim:
-      +materialized: table
-      config:
-        +schema: 'gold_{{ vars.env }}'
-    fct:
-      +materialized: incremental
-      config:
-        +schema: 'gold_{{ vars.env }}'
-    stg:
+
+    staging:
       +materialized: view
       config:
         +schema: 'silver_{{ vars.env }}' 
@@ -56,8 +45,11 @@ models:
       +materialized: view
       config:
         +schema: 'silver_{{ vars.env }}'
-    src:
-      +materialized: ephemeral
+    marts:
+      +materialized: table
+      config:
+        +schema: 'gold_{{ vars.env }}'
+
 
 # This section is for variables that you want to use in your dbt project.
 vars:

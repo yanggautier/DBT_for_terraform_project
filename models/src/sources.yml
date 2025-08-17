@@ -3,6 +3,7 @@ version: 2
 sources:
 - name: raw_data
     schema: raw_data
+    description: "Source schema containing raw data from the BigQuery bronze dataset"
     tables:
     - name: actor
         - description: "Table containing actor information"

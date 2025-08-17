@@ -18,7 +18,22 @@ steps:
     ]
     id: 'push-image'
 
-# Mise à jour du DAG Airflow avec la nouvelle image
+  # Deploy the DBT image to Cloud Run
+  - name: '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/dbt:latest'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        # Generate DBT documentation in a temporary gcs
+        dbt docs generate --project-dir=/workspace --profiles-dir=/root/.dbt
+        
+        # Copy the generated documentation to a target directory
+        gsutil rsync -r target/ gs://${_DOCS_BUCKET_NAME}/
+    id: 'deploy-docs'
+    # S'assure que cette étape ne s'exécute qu'après que l'image a été poussée.
+    waitFor: ['push-image']
+
+# Trigger the DAG run, passing the new image as a variable
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
@@ -70,10 +85,11 @@ substitutions:
   _ENVIRONMENT: 'dev'
   _COMPOSER_ENV: 'composer-dbt-${_ENVIRONMENT}'
   _COMPOSER_BUCKET: '${_COMPOSER_BUCKET_NAME}'
+  _DOCS_BUCKET_NAME: 'dbt-docs-bucker-${_ENVIRONMENT}'
 
-# Common environment variables
+# Common environment variables 
 options:
   logging: CLOUD_LOGGING_ONLY
-  machineType: 'E2_STANDARD_4'
+  
 
 timeout: '1200s'  # 20 minutes
