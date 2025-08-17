@@ -41,7 +41,7 @@ steps:
       - |
         # download the current DAG from Cloud Composer
         echo "Downloading current DAG from Cloud Composer..."
-        gsutil cp gs://$COMPOSER_BUCKET/dags/dbt_dag.py ./dbt_dag.py
+        gsutil cp gs://${_COMPOSER_BUCKET_NAME}/dags/dbt_dag.py ./dbt_dag.py
         
         # Check if the file was downloaded successfully
         if [ ! -f "dbt_dag.py" ]; then
@@ -60,11 +60,9 @@ steps:
         
         # Upload the updated DAG back to Cloud Composer
         echo "Uploading updated DAG to Cloud Composer..."
-        gsutil cp dbt_dag.py gs://$COMPOSER_BUCKET/dags/
+        gsutil cp dbt_dag.py gs://${_COMPOSER_BUCKET_NAME}/dags/
         
         echo "DAG update completed successfully!"
-    env:
-      - 'COMPOSER_BUCKET=${_COMPOSER_BUCKET_NAME}'
     id: 'update-dag'
 
   # Trigger the DAG run
