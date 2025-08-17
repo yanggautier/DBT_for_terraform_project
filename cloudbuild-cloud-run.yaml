@@ -71,7 +71,7 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args: [
       'composer', 'dags', 'trigger',
-      '--environment', '${_COMPOSER_ENV}',
+      '--environment', 'composer-dbt-${_ENVIRONMENT}',
       '--location', '${_REGION}',
       'dbt_run_dag'
     ]
@@ -83,9 +83,8 @@ substitutions:
   _REGION: 'europe-west1'
   _REPO_NAME: 'dbt-repo-${_ENVIRONMENT}'
   _ENVIRONMENT: 'dev'
-  _COMPOSER_ENV: 'composer-dbt-${_ENVIRONMENT}'
   _COMPOSER_BUCKET: '${_COMPOSER_BUCKET_NAME}'
-  _DOCS_BUCKET_NAME: 'dbt-docs-bucker-${_ENVIRONMENT}'
+  _DOCS_BUCKET_NAME: '${_DOCS_BUCKET_NAME}'
 
 # Common environment variables 
 options:
