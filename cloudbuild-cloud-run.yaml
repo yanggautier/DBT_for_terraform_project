@@ -83,7 +83,7 @@ substitutions:
   _REGION: 'europe-west1'
   _REPO_NAME: 'dbt-repo-${_ENVIRONMENT}'
   _ENVIRONMENT: 'dev'
-  _COMPOSER_BUCKET: '${_COMPOSER_BUCKET_NAME}'
+  _COMPOSER_BUCKET: '${_COMPOSER_BUCKET}'
   _DOCS_BUCKET_NAME: '${_DOCS_BUCKET_NAME}'
 
 # Common environment variables 
