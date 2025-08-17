@@ -1,0 +1,10 @@
+dbt_gcp_project:
+  target: "{{ env_var('DBT_TARGET', 'dev') }}"
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: "dbt-project-dvd-rent-464116"
+      dataset: "bronze_dev"
+      threads: 2
+      location: "us-central1"
