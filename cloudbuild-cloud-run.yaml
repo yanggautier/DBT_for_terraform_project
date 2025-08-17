@@ -25,7 +25,7 @@ steps:
       - '-c'
       - |
         # Generate DBT documentation in a temporary gcs
-        dbt docs generate --project-dir=/workspace --profiles-dir=/root/.dbt
+        dbt docs generate --project-dir=/workspace --profiles-dir=/app/profiles
         
         # Copy the generated documentation to a target directory
         gsutil rsync -r target/ gs://${_DOCS_BUCKET_NAME}/
