@@ -50,7 +50,7 @@ steps:
         fi
         
         # Update the image in the DAG file
-        echo "Updating DAG with new image: $NEW_IMAGE"
+        echo "Updating DAG with new image"
         sed -i "s|image=\"[^\"]*dbt[^\"]*\"|image=\"${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt:${COMMIT_SHA}\"|g" dbt_dag.py
         
         # Check if the sed command was successful
