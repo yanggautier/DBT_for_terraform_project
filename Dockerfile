@@ -13,8 +13,6 @@ RUN pip install --no-cache-dir \
 # Create user and group for dbt
 RUN groupadd -r dbt && useradd -r -g dbt -u 1000 dbt
 
-COPY /Users/guoleyang/.dbt/profiles.yml /app/profiles
-
 # Create dbt profiles directory
 WORKDIR /usr/src/dbt/dbt_project
 
