@@ -3,8 +3,8 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'build',
-      '-t', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/dbt:${COMMIT_SHA}',
-      '-t', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/dbt:latest',
+      '-t', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt:${COMMIT_SHA}',
+      '-t', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt:latest',
       '.'
     ]
     id: 'build-image'
@@ -14,12 +14,12 @@ steps:
     args: [
       'push', 
       '--all-tags',
-      '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/dbt'
+      '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt'
     ]
     id: 'push-image'
 
   # Deploy the DBT image to Cloud Run
-  - name: '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/dbt:latest'
+  - name: '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt:latest'
     entrypoint: 'bash'
     args:
       - '-c'
@@ -50,7 +50,7 @@ steps:
         fi
         
         # Update the image in the DAG file
-        NEW_IMAGE="${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/dbt:${COMMIT_SHA}"
+        NEW_IMAGE="${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt:${COMMIT_SHA}"
         echo "Updating DAG with new image: $NEW_IMAGE"
         sed -i "s|image=\"[^\"]*dbt[^\"]*\"|image=\"$NEW_IMAGE\"|g" dbt_dag.py
         
@@ -64,7 +64,7 @@ steps:
         
         echo "DAG update completed successfully!"
     env:
-      - 'COMPOSER_BUCKET=${_COMPOSER_BUCKET}'
+      - 'COMPOSER_BUCKET=${_COMPOSER_BUCKET_NAME}'
     id: 'update-dag'
 
   # Trigger the DAG run
@@ -81,10 +81,11 @@ steps:
 # Substitutions for the build
 substitutions:
   _REGION: 'europe-west1'
-  _REPO_NAME: 'dbt-repo-${_ENVIRONMENT}'
+  _PROJECT_ID: 'my_project'
   _ENVIRONMENT: 'dev'
-  _COMPOSER_BUCKET: '${_COMPOSER_BUCKET}'
-  _DOCS_BUCKET_NAME: '${_DOCS_BUCKET_NAME}'
+  _REPO_NAME: 'dbt-repo-${_ENVIRONMENT}'
+  _COMPOSER_BUCKET_NAME: 'composer_bucket-${_ENVIRONMENT}'
+  _DOCS_BUCKET_NAME: 'docs_bucket-${_ENVIRONMENT}'
 
 # Common environment variables 
 options:
