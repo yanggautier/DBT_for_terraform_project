@@ -4,16 +4,10 @@
 name: 'dbt_gcp_project'
 version: '1.0.0'
 
-  # This is a placeholder for any variables you might want to use in your dbt project.
-  # You can define them here and reference them in your models, tests, or macros.
-  # user_name: 'default_user_name_for_this_project'
-
 # This setting configures which "profile" dbt uses for this project.
 profile: 'dbt_gcp_project'
 
 # These configurations specify where dbt should look for different types of files.
-# The `model-paths` config, for example, states that models in this project can be
-# found in the "models/" directory. You probably won't need to change these!
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
@@ -30,25 +24,22 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
-# In this example config, we tell dbt to build all models in the example/
-# directory as views. These settings can be overridden in the individual model
-# files using the `{{ config(...) }}` macro.
 models:
-  dbt_gcp_project:
-
+  dbt_gcp_project: # Le nom du projet doit correspondre ici
     # Staging models will be created as views in the silver dataset
     staging:
       +materialized: view
-      +schema: 'silver_{{ var.env }}' 
+      +schema: 'silver_{{ var("env") }}' 
+      
     # Intermediate models will be created as views in the silver dataset
-    intermediate:
+    int:
       +materialized: view
-      +schema: 'silver_{{ var.env }}'
-    # Marts models will be created as tables in the gold dataset      
+      +schema: 'silver_{{ var("env") }}'
+      
+    # Marts models will be created as tables in the gold dataset
     marts:
       +materialized: table
-      +schema: 'gold_{{ var.env }}'
-
+      +schema: 'gold_{{ var("env") }}'
 
 # This section is for variables that you want to use in your dbt project.
 vars:
