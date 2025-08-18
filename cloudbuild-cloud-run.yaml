@@ -1,4 +1,15 @@
 steps:
+
+  # Install dependencies
+  - name: 'ghcr.io/dbt-labs/dbt-bigquery:latest'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Running dbt deps to fetch dependencies..."
+        dbt deps --project-dir=/workspace
+    id: 'dbt-deps'
+
   # Build DBT image
   - name: 'gcr.io/cloud-builders/docker'
     args: [
@@ -8,6 +19,7 @@ steps:
       '.'
     ]
     id: 'build-image'
+    waitFor: ['dbt-deps']
 
   # Push to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -17,6 +29,7 @@ steps:
       '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt'
     ]
     id: 'push-image'
+    waitFor: ['build-image']
 
   # Deploy the DBT image to Cloud Run
   - name: '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt:latest'
@@ -63,6 +76,7 @@ steps:
         
         echo "DAG update completed successfully!"
     id: 'update-dag'
+
 
   # Trigger the DAG run
   - name: 'gcr.io/cloud-builders/gcloud'

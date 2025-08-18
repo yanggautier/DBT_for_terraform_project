@@ -20,4 +20,4 @@ WORKDIR /usr/src/dbt/dbt_project
 COPY . .
 
 # Set the working directory to the dbt project
-CMD ["dbt", "compile", "--profiles-dir", "/app/profiles"]
+CMD ["dbt", "compile", "--profiles-dir", "app/profiles"]
