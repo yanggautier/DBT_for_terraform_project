@@ -10,6 +10,6 @@ LEFT JOIN
     {{ ref('int_rentals_with_details') }} AS r ON s.staff_id
 
 LEFT JOIN 
-    {{ ref('int_payments') }} AS p ON r.rental_id = p.rental_id
+    {{ ref('int_payments_with_customer_info') }} AS p ON r.rental_id = p.rental_id
 
 GROUP BY s.staff_id
