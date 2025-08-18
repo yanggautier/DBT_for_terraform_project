@@ -3,4 +3,4 @@ SELECT
     manager_staff_id,
     address_id
 FROM
-    {{ source('raw_data', 'storector') }}
+    {{ source('raw_data', 'store') }}
