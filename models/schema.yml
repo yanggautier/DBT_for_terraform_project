@@ -1,430 +1,427 @@
 version: 2
 models:
-    - name: stg_actor
+  - name: stg_actor
     description: "Staging model for actors"
     columns:
-        - name: actor_id
+      - name: actor_id
         description: "Unique identifier for each actor"
-        - name: first_name
+      - name: first_name
         description: "First name of the actor"
-        - name: last_name
+      - name: last_name
         description: "Last name of the actor"
 
-    - name: stg_address
+  - name: stg_address
     description: "Staging model for addresses"
     columns:
-        - name: address_id
+      - name: address_id
         description: "Unique identifier for each address"
-        - name: address
+      - name: address
         description: "Street address"
-        - name: address2
+      - name: address2
         description: "Additional address information"
-        - name: district
+      - name: district
         description: "District of the address"
-        - name: city_id
+      - name: city_id
         description: "Identifier for the city associated with the address"
-        - name: postal_code
+      - name: postal_code
         description: "Postal code of the address"
 
-    - name: stg_category
+  - name: stg_category
     description: "Staging model for film categories"
     columns:
-        - name: category_id
+      - name: category_id
         description: "Unique identifier for each film category"
-        - name: name
+      - name: name
         description: "Name of the film category"
 
-    - name: stg_city
+  - name: stg_city
     description: "Staging model for cities"
     columns:
-        - name: city_id
+      - name: city_id
         description: "Unique identifier for each city"
-        - name: city
+      - name: city
         description: "Name of the city"
-        - name: country_id
+      - name: country_id
         description: "Identifier for the country associated with the city"
 
-    - name: stg_country
+  - name: stg_country
     description: "Staging model for countries"
     columns:
-        - name: country_id
+      - name: country_id
         description: "Unique identifier for each country"
-        - name: country
+      - name: country
         description: "Name of the country"
 
-    - name: stg_customer
+  - name: stg_customer
     description: "Staging model for customers"
     columns:
-        - name: customer_id
+      - name: customer_id
         description: "Unique identifier for each customer"
-        - name: store_id
+      - name: store_id
         description: "Identifier for the store associated with the customer"
-        - name: first_name
+      - name: first_name
         description: "First name of the customer"
-        - name: last_name
+      - name: last_name
         description: "Last name of the customer"
-        - address_id
+      - name: address_id
         description: "Identifier for the address of the customer"
-        - create_date
+      - name: create_date
         description: "Date when the customer was created"
 
-    - name: stg_film
+  - name: stg_film
     description: "Staging model for films"
     columns:
-        - name: film_id
+      - name: film_id
         description: "Unique identifier for each film"
-        - name: title
+      - name: title
         description: "Title of the film"
-        - name: release_year
+      - name: release_year
         description: "Year when the film was released"
-        - name: language_id
+      - name: language_id
         description: "Identifier for the language of the film"
-        - name: original_language_id
+      - name: original_language_id
         description: "Identifier for the original language of the film"
-        - name: rental_duration
+      - name: rental_duration
         description: "Duration for which the film can be rented"
-        - name: rental_rate
+      - name: rental_rate
         description: "Rate at which the film can be rented"
-        - name: replacement_cost
+      - name: replacement_cost
         description: "Cost to replace the film if lost or damaged"
-        - name: length
+      - name: length
         description: "Length of the film in minutes"
-        - name: rating
+      - name: rating
         description: "Rating of the film"
 
-    - name: stg_film_actor
+  - name: stg_film_actor
     description: "Staging model for film-actor relationships"
     columns:
-        - name: actor_id
+      - name: actor_id
         description: "Unique identifier for each actor"
-        - name: film_id
+      - name: film_id
         description: "Unique identifier for each film"
 
-    - name: stg_film_category
+  - name: stg_film_category
     description: "Staging model for film-category relationships"
     columns:
-        - name: film_id
+      - name: film_id
         description: "Unique identifier for each film"
-        - name: category_id
+      - name: category_id
         description: "Unique identifier for each film category"
 
-    - name: stg_inventory
+  - name: stg_inventory
     description: "Staging model for inventory items"
     columns:
-        - name: inventory_id
+      - name: inventory_id
         description: "Unique identifier for each inventory item"
-        - name: film_id
+      - name: film_id
         description: "Identifier for the film associated with the inventory item"
-        - name: store_id
+      - name: store_id
         description: "Identifier for the store where the inventory item is located"
 
-    - name: stg_payment
+  - name: stg_payment
     description: "Staging model for payment transactions"
     columns:
-        - name: payment_id
+      - name: payment_id
         description: "Unique identifier for each payment transaction"
-        - name: customer_id
+      - name: customer_id
         description: "Identifier for the customer who made the payment"
-        - name: staff_id
+      - name: staff_id
         description: "Identifier for the staff member who processed the payment"
-        - name: rental_id
+      - name: rental_id
         description: "Identifier for the rental transaction associated with the payment"
-        - name: amount
+      - name: amount
         description: "Amount of the payment"
-        - name: payment_date
+      - name: payment_date
         description: "Date and time when the payment was made"
 
-    - name: stg_language
+  - name: stg_language
     description: "Staging model for languages"
     columns:
-        - name: language_id
+      - name: language_id
         description: "Unique identifier for each language"
-        - name: name
+      - name: name
         description: "Name of the language"
 
-    - name: stg_rental
+  - name: stg_rental
     description: "Staging model for rental transactions"
     columns:
-        - name: rental_id
+      - name: rental_id
         description: "Unique identifier for each rental transaction"
-        - name: rental_date
+      - name: rental_date
         description: "Date and time when the rental was made"
-        - name: inventory_id
+      - name: inventory_id
         description: "Identifier for the inventory item rented"
-        - name: customer_id
+      - name: customer_id
         description: "Identifier for the customer who made the rental"
-        - name: return_date
+      - name: return_date
         description: "Date and time when the rental was returned"
-        - name: staff_id
+      - name: staff_id
         description: "Identifier for the staff member who processed the rental"
 
-    - name: stg_store
+  - name: stg_store
     description: "Staging model for store information"
     columns:
-        - name: store_id
+      - name: store_id
         description: "Unique identifier for each store"
-        - name: manager_staff_id
+      - name: manager_staff_id
         description: "Identifier for the staff member managing the store"
-        - name: address_id
+      - name: address_id
         description: "Identifier for the address of the store"
 
-    - name: stg_staff
+  - name: stg_staff
     description: "Staging model for staff members"
     columns:
-        - name: staff_id
+      - name: staff_id
         description: "Unique identifier for each staff member"
-        - name: first_name
+      - name: first_name
         description: "First name of the staff member"
-        - name: last_name
+      - name: last_name
         description: "Last name of the staff member"
-        - name: address_id
+      - name: address_id
         description: "Identifier for the address of the staff member"
 
-    - name: int_customer_with_details
-    description: "Intermediate model joining customer data with address and city information and  calculating customer lifetime value"
-        columns:
-            - name: customer_id
-            description: "Unique identifier for each customer"
-            - name: full_name
-            description: "Full name of the customer, concatenating first and last names"
-            - name: create_date
-            description: "Date when the customer was created"
-            - name: district
-            description: "District where the customer resides"
-            - name: postal_code
-            description: "Postal code of the customer's address"
-            - name: city
-            description: "City where the customer resides"
-            - name: country
-            description: "Country where the customer resides"
-            - name: total_spent
-            description: "Total amount spent by the customer across all transactions"
-            - name: total_rentals
-            description: "Total number of rentals made by the customer"
-            - name: average_rental_duration
-            description: "Average duration of rentals made by the customer in days"
-            - name: average_payment_amount
-            description: "Average amount paid by the customer per transaction"
-            - name: last_rental_date
-            description: "Date of the last rental made by the customer"
-            - name: first_rental_date
-            description: "Date of the first rental made by the customer"
+  - name: int_customer_with_details
+    description: "Intermediate model joining customer data with address and city information and calculating customer lifetime value"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for each customer"
+      - name: full_name
+        description: "Full name of the customer, concatenating first and last names"
+      - name: create_date
+        description: "Date when the customer was created"
+      - name: district
+        description: "District where the customer resides"
+      - name: postal_code
+        description: "Postal code of the customer's address"
+      - name: city
+        description: "City where the customer resides"
+      - name: country
+        description: "Country where the customer resides"
+      - name: total_spent
+        description: "Total amount spent by the customer across all transactions"
+      - name: total_rentals
+        description: "Total number of rentals made by the customer"
+      - name: average_rental_duration
+        description: "Average duration of rentals made by the customer in days"
+      - name: average_payment_amount
+        description: "Average amount paid by the customer per transaction"
+      - name: last_rental_date
+        description: "Date of the last rental made by the customer"
+      - name: first_rental_date
+        description: "Date of the first rental made by the customer"
 
-    - name: int_film_with_details
+  - name: int_film_with_details
     description: "Intermediate model joining film data with category and language information"
-        columns:
-            - name: film_id
-            description: "Unique identifier for each film"
-            - name: title
-            description: "Title of the film"
-            - name: release_year
-            description: "Year when the film was released"
-            - name: rental_duration
-            description: "Duration for which the film can be rented"
-            - name: rental_rate
-            description: "Rate at which the film can be rented"
-            - name: replacement_cost
-            description: "Cost to replace the film if lost or damaged"
-            - name: length
-            description: "Length of the film in minutes"
-            - name: rating
-            description: "Rating of the film"
-            - name.: replacement_cost
-            description: "Cost to replace the film if lost or damaged"
-            - name: category_names
-            description: "Name of the category to which the film belongs"
-            - name: actors
-            description: "List of actors who starred in the film"
-            - name: language_name
-            description: "Name of the language of the film"
-            - name: original_language_name
-            description: "Name of the original language of the film, if different from the main language"
+    columns:
+      - name: film_id
+        description: "Unique identifier for each film"
+      - name: title
+        description: "Title of the film"
+      - name: release_year
+        description: "Year when the film was released"
+      - name: rental_duration
+        description: "Duration for which the film can be rented"
+      - name: rental_rate
+        description: "Rate at which the film can be rented"
+      - name: replacement_cost
+        description: "Cost to replace the film if lost or damaged"
+      - name: length
+        description: "Length of the film in minutes"
+      - name: rating
+        description: "Rating of the film"
+      - name: replacement_cost
+        description: "Cost to replace the film if lost or damaged"
+      - name: category_names
+        description: "Name of the category to which the film belongs"
+      - name: actors
+        description: "List of actors who starred in the film"
+      - name: language_name
+        description: "Name of the language of the film"
+      - name: original_language_name
+        description: "Name of the original language of the film, if different from the main language"
 
-    - nam: int_payments_with_customer_info
+  - name: int_payments_with_customer_info
     description: "Intermediate model joining payment data with customer information"
-        columns:
-            - name: payment_id
-            description: "Unique identifier for each payment transaction"
-            - name: customer_id
-            description: "Unique identifier for the customer who made the payment"
-            - name: full_name
-            description: "Full name of the customer who made the payment"
-            - name: amount
-            description: "Amount of the payment"
-            - name: payment_date
-            description: "Date and time when the payment was made"
-            - name: address_id
-            description: "Identifier for the address associated with the customer"
-            - name: create_date
-            description: "Date when the customer was created"
+    columns:
+      - name: payment_id
+        description: "Unique identifier for each payment transaction"
+      - name: customer_id
+        description: "Unique identifier for the customer who made the payment"
+      - name: full_name
+        description: "Full name of the customer who made the payment"
+      - name: amount
+        description: "Amount of the payment"
+      - name: payment_date
+        description: "Date and time when the payment was made"
+      - name: address_id
+        description: "Identifier for the address associated with the customer"
+      - name: create_date
+        description: "Date when the customer was created"
 
-    - name: int_rentals_with_details
+  - name: int_rentals_with_details
     description: "Intermediate model joining rental data with film, customer, and payment information"
-        columns:
-            - name: rental_id
-            description: "Unique identifier for each rental transaction"
-            - name: rental_date
-            description: "Date and time when the rental was made"
-            - name: return_date
-            description: "Date and time when the rental was returned"
-            - name: customer_id
-            description: "Unique identifier for the customer who made the rental"
-            - name: film_id
-            description: "Unique identifier for the film that was rented"
-            - name: title
-            description: "Title of the film that was rented"
-            - name: realase_year
-            description: "Year when the film was released"
-            - name: language_id
-            description: "Identifier for the language of the film"
-            - name: original_language_id
-            description: "Identifier for the original language of the film"
-            - name: rental_duration
-            description: "Duration for which the film can be rented"
-            - name: rental_rate
-            description: "Rate at which the film can be rented"
-            - name: replacement_cost
-            description: "Cost to replace the film if lost or damaged"
-            - name: rental_duration
-            description: "Duration of the rental in days"
-            - name: rating
-            description: "Rating of the film that was rented"
-            - name: payment_amount
-            description: "Amount paid for the rental"
-            - name: length
-            description: "Length of the film in minutes"
-            - name: store_id
-            description: "Identifier for the store where the rental was made"
+    columns:
+      - name: rental_id
+        description: "Unique identifier for each rental transaction"
+      - name: rental_date
+        description: "Date and time when the rental was made"
+      - name: return_date
+        description: "Date and time when the rental was returned"
+      - name: customer_id
+        description: "Unique identifier for the customer who made the rental"
+      - name: film_id
+        description: "Unique identifier for the film that was rented"
+      - name: title
+        description: "Title of the film that was rented"
+      - name: realase_year
+        description: "Year when the film was released"
+      - name: language_id
+        description: "Identifier for the language of the film"
+      - name: original_language_id
+        description: "Identifier for the original language of the film"
+      - name: rental_duration
+        description: "Duration for which the film can be rented"
+      - name: rental_rate
+        description: "Rate at which the film can be rented"
+      - name: replacement_cost
+        description: "Cost to replace the film if lost or damaged"
+      - name: rental_duration
+        description: "Duration of the rental in days"
+      - name: rating
+        description: "Rating of the film that was rented"
+      - name: payment_amount
+        description: "Amount paid for the rental"
+      - name: length
+        description: "Length of the film in minutes"
+      - name: store_id
+        description: "Identifier for the store where the rental was made"
 
-    - name: int_staff_with_stores
+  - name: int_staff_with_stores
     description: "Intermediate model joining staff data with store information"
-        columns:
-            - name: staff_id
-            description: "Unique identifier for each staff member"
-            - name: first_name
-            description: "First name of the staff member"
-            - name: last_name
-            description: "Last name of the staff member"
-            - name: address_id
-            description: "Identifier for the address of the staff member"
-            - name: store_id
-            description: "Identifier for the store where the staff member works"
+    columns:
+      - name: staff_id
+        description: "Unique identifier for each staff member"
+      - name: first_name
+        description: "First name of the staff member"
+      - name: last_name
+        description: "Last name of the staff member"
+      - name: address_id
+        description: "Identifier for the address of the staff member"
+      - name: store_id
+        description: "Identifier for the store where the staff member works"
 
-    - name: dim_customers
+  - name: dim_customers
     description: "Dimension model for customers with detailed information"
-        columns:
-            - name: customer_id
-            description: "Unique identifier for each customer"
-            - name: full_name
-            description: "Full name of the customer, concatenating first and last names"
-            - name: customer_create_date
-            description: "Date when the customer was created"
-            - name: district
-            description: "District where the customer resides"
-            - name: postal_code
-            description: "Postal code of the customer's address"
-            - name: city
-            description: "City where the customer resides"
-            - name: country
-            description: "Country where the customer resides"
-            - name: total_spent
-            description: "Total amount spent by the customer across all transactions"
-            - name: total_rentals
-            description: "Total number of rentals made by the customer"
-            - name: average_rental_duration
-            description: "Average duration of rentals made by the customer in days"
-            - name: average_rental_value
-            description: "Average value of rentals made by the customer"
-            - name: first_rental_date
-            description: "Date of the first rental made by the customer"
-            - name: last_rental_date
-            description: "Date of the last rental made by the customer"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for each customer"
+      - name: full_name
+        description: "Full name of the customer, concatenating first and last names"
+      - name: customer_create_date
+        description: "Date when the customer was created"
+      - name: district
+        description: "District where the customer resides"
+      - name: postal_code
+        description: "Postal code of the customer's address"
+      - name: city
+        description: "City where the customer resides"
+      - name: country
+        description: "Country where the customer resides"
+      - name: total_spent
+        description: "Total amount spent by the customer across all transactions"
+      - name: total_rentals
+        description: "Total number of rentals made by the customer"
+      - name: average_rental_duration
+        description: "Average duration of rentals made by the customer in days"
+      - name: average_rental_value
+        description: "Average value of rentals made by the customer"
+      - name: first_rental_date
+        description: "Date of the first rental made by the customer"
+      - name: last_rental_date
+        description: "Date of the last rental made by the customer"
 
-    - name: dim_films
+  - name: dim_films
     description: "Dimension model for films with detailed information"
-        columns:
-         - name: film_id
-            description: "Unique identifier for each film"
-            - name: title
-            description: "Title of the film"
-            - name: release_year
-            description: "Year when the film was released"
-            - name: language_id
-            description: "Language of the film"
-            - name: original_language_id
-            description: "Original language of the film, if different from the main language"
-            - name: rental_duration
-            description: "Duration for which the film can be rented"
-            - name: rental_rate
-            description: "Rate at which the film can be rented"
-            - name: replacement_cost
-            description: "Cost to replace the film if lost or damaged"
-            - name: length
-            description: "Length of the film in minutes"
-            - name: rating
-            description: "Rating of the film"
-            - name.: replacement_cost
-            description: "Cost to replace the film if lost or damaged"
-            - name: category_names
-            description: "Name of the category to which the film belongs"
-            - name: actors
-            description: "List of actors who starred in the film"
-            - name: language_name
+    columns:
+      - name: film_id
+        description: "Unique identifier for each film"
+      - name: title
+        description: "Title of the film"
+      - name: release_year
+        description: "Year when the film was released"
+      - name: language_id
+        description: "Language of the film"
+      - name: original_language_id
+        description: "Original language of the film, if different from the main language"
+      - name: rental_duration
+        description: "Duration for which the film can be rented"
+      - name: rental_rate
+        description: "Rate at which the film can be rented"
+      - name: replacement_cost
+        description: "Cost to replace the film if lost or damaged"
+      - name: length
+        description: "Length of the film in minutes"
+      - name: rating
+        description: "Rating of the film"
+      - name: category_names
+        description: "Name of the category to which the film belongs"
+      - name: actors
+        description: "List of actors who starred in the film"
+      - name: language_name
+        description: "Name of the language of the film"
 
-    - name: dim_staffs
+  - name: dim_staffs
     description: "Dimension model for staff members with detailed information"
-        columns:
-            - name: staff_id
-            description: "Unique identifier for each staff member"
-            - name: staff_full_name
-            description: "Full name of the staff member, concatenating first and last names"
-            - name: address_id
-            description: "Identifier for the address of the staff member"
-            - name: store_id
-            description: "Identifier for the store where the staff member works"
-            - name: staff_total_rentals
-            description: "Total number of rentals processed by the staff member"
-            - name: staff_total_payments
-            description: "Total amount of payments processed by the staff member"
+    columns:
+      - name: staff_id
+        description: "Unique identifier for each staff member"
+      - name: staff_full_name
+        description: "Full name of the staff member, concatenating first and last names"
+      - name: address_id
+        description: "Identifier for the address of the staff member"
+      - name: store_id
+        description: "Identifier for the store where the staff member works"
+      - name: staff_total_rentals
+        description: "Total number of rentals processed by the staff member"
+      - name: staff_total_payments
+        description: "Total amount of payments processed by the staff member"
 
-    - name: dim_stores
+  - name: dim_stores
     description: "Dimension model for stores with detailed information"
-        columns:
-            - name: store_id
-            description: "Unique identifier for each store"
-            - name: store_address
-            description: "Address of the store, joining street, district, city, and country information"
-            - name: store_postal_code
-            description: "Postal code of the store's address"
-            - name: store_manager
-            description: "Full name of the store manager, concatenating first and last names"
-            - name: store_city
-            description: "City where the store is located"
-            - name: store_country
-            description: "Country where the store is located"
+    columns:
+      - name: store_id
+        description: "Unique identifier for each store"
+      - name: store_address
+        description: "Address of the store, joining street, district, city, and country information"
+      - name: store_postal_code
+        description: "Postal code of the store's address"
+      - name: store_manager
+        description: "Full name of the store manager, concatenating first and last names"
+      - name: store_city
+        description: "City where the store is located"
+      - name: store_country
+        description: "Country where the store is located"
   
-    - name: fct_rentals
+  - name: fct_rentals
     description: "Fact table for rental transactions with detailed information"
-        columns:
-            - name: rental_id
-            description: "Unique identifier for each rental transaction"
-            - name: rental_date
-            description: "Date and time when the rental was made"
-            - name: return_date
-            description: "Date and time when the rental was returned"
-            - name: rental_duration
-            description: "Duration of the rental in days"
-            - name: rental_rate
-            description: "Rate at which the film was rented"
-            - name: payment_amount
-            description: "Amount paid for the rental"
-            - name: customer_id
-            description: "Unique identifier for the customer who made the rental"
-            - name: film_id
-            description: "Unique identifier for the film that was rented"
-            - name: staff_id
-            description: "Unique identifier for the staff member who processed the rental"
-            - name: store_id
-            description: "Unique identifier for the store where the rental was made"
-
- 
+    columns:
+      - name: rental_id
+        description: "Unique identifier for each rental transaction"
+      - name: rental_date
+        description: "Date and time when the rental was made"
+      - name: return_date
+        description: "Date and time when the rental was returned"
+      - name: rental_duration
+        description: "Duration of the rental in days"
+      - name: rental_rate
+        description: "Rate at which the film was rented"
+      - name: payment_amount
+        description: "Amount paid for the rental"
+      - name: customer_id
+        description: "Unique identifier for the customer who made the rental"
+      - name: film_id
+        description: "Unique identifier for the film that was rented"
+      - name: staff_id
+        description: "Unique identifier for the staff member who processed the rental"
+      - name: store_id
+        description: "Unique identifier for the store where the rental was made"
