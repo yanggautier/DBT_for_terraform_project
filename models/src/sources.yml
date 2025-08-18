@@ -1,37 +1,37 @@
 version: 2
 
 sources:
-- name: raw_data
+  - name: raw_data
     schema: raw_data
     description: "Source schema containing raw data from the BigQuery bronze dataset"
     tables:
-    - name: actor
-        - description: "Table containing actor information"
-    - name: film
-        - description: "Table containing film information"
-    - name: film_actor
-        - description: "Table linking films and actors"
-    - name: film_category
-        - description: "Table linking films and categories"
-    - name: category
-        - description: "Table containing film categories"
-    - name: customer
-        - description: "Table containing customer information"
-    - name: rental
-        - description: "Table containing rental transactions"
-    - name: payment
-        - description: "Table containing payment transactions"
-    - name: staff
-        - description: "Table containing staff information"
-    - name: store
-        - description: "Table containing store information"
-    - name: address
-        - description: "Table containing address information"
-    - name: city
-        - description: "Table containing city information"
-    - name: country
-        - description: "Table containing country information"
-    - name: inventory
-        - description: "Table containing inventory information"
-    - name: language
-        - description: "Table containing language information"
+      - name: actor
+        description: "Table containing actor information"
+      - name: film
+        description: "Table containing film information"
+      - name: film_actor
+        description: "Table linking films and actors"
+      - name: film_category
+        description: "Table linking films and categories"
+      - name: category
+        description: "Table containing film categories"
+      - name: customer 
+        description: "Table containing customer information"
+      - name: rental
+        description: "Table containing rental transactions"
+      - name: payment
+        description: "Table containing payment transactions"
+      - name: staff
+        description: "Table containing staff information"
+      - name: store
+        description: "Table containing store information"
+      - name: address
+        description: "Table containing address information"
+      - name: city
+        description: "Table containing city information"
+      - name: country
+        description: "Table containing country information"
+      - name: inventory
+        description: "Table containing inventory information"
+      - name: language
+        description: "Table containing language information"
