@@ -34,21 +34,20 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  dbt_dvd_rental:
-    +materialized: view
+  dbt_gcp_project:
 
+    # Staging models will be created as views in the silver dataset
     staging:
       +materialized: view
-      config:
-        +schema: 'silver_{{ var.env }}' 
-    int:
+      +schema: 'silver_{{ var.env }}' 
+    # Intermediate models will be created as views in the silver dataset
+    intermediate:
       +materialized: view
-      config:
-        +schema: 'silver_{{ var.env }}'
+      +schema: 'silver_{{ var.env }}'
+    # Marts models will be created as tables in the gold dataset      
     marts:
       +materialized: table
-      config:
-        +schema: 'gold_{{ var.env }}'
+      +schema: 'gold_{{ var.env }}'
 
 
 # This section is for variables that you want to use in your dbt project.
