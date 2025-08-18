@@ -10,4 +10,4 @@ SELECT
     film_id,
     store_id,
 FROM 
-    {{ ref('int_rental_with_details') }}
+    {{ ref('int_rentals_with_details') }}
