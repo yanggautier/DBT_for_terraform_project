@@ -40,15 +40,15 @@ models:
     staging:
       +materialized: view
       config:
-        +schema: 'silver_{{ vars.env }}' 
+        +schema: 'silver_{{ var.env }}' 
     int:
       +materialized: view
       config:
-        +schema: 'silver_{{ vars.env }}'
+        +schema: 'silver_{{ var.env }}'
     marts:
       +materialized: table
       config:
-        +schema: 'gold_{{ vars.env }}'
+        +schema: 'gold_{{ var.env }}'
 
 
 # This section is for variables that you want to use in your dbt project.
