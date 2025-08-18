@@ -13,7 +13,7 @@ SELECT
     MIN(r.rental_date) AS first_rental_date,
     MAX(r.rental_date) AS last_rental_date
 FROM
-    {{ ref('stg_customers') }} AS c
+    {{ ref('stg_customer') }} AS c
 
 JOIN 
     {{ ref('stg_rental') }} r ON c.customer_id = r.customer_id

@@ -21,10 +21,10 @@ FROM
     {{ ref('stg_rental') }} AS r
 
 LEFT JOIN
-    {{ ref('stg_films') }} f ON r.film_id = f.film_id
+    {{ ref('stg_film') }} f ON r.film_id = f.film_id
 
 LEFT JOIN
-    {{ ref('stg_customers') }} c ON r.customer_id = c.customer_id
+    {{ ref('stg_customer') }} c ON r.customer_id = c.customer_id
 
 LEFT JOIN
     {{ ref('stg_payment') }} s ON r.rental_id = s.rental_id
