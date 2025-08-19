@@ -54,11 +54,11 @@ steps:
       - |
         # download the current DAG from Cloud Composer
         echo "Downloading current DAG from Cloud Composer..."
-        gsutil cp gs://${_COMPOSER_BUCKET_NAME}/dags/dbt_dag.py ./dbt_dag.py
+        gsutil cp gs://${_COMPOSER_BUCKET_NAME}/dags/dbt_run_dag.py ./dbt_run_dag.py
         
         # Check if the file was downloaded successfully
-        if [ ! -f "dbt_dag.py" ]; then
-          echo "Error: Could not download dbt_dag.py from Cloud Composer"
+        if [ ! -f "dbtrun_dag.py" ]; then
+          echo "Error: Could not download dbt_run_dag.py from Cloud Composer"
           exit 1
         fi
         
