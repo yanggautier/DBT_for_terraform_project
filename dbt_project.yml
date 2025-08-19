@@ -38,15 +38,12 @@ vars:
 # files using the `{{ config(...) }}` macro.
 models:
   dbt_gcp_project:
-    # Staging models will be created as views in the silver dataset
     staging:
       +materialized: view
-      +schema: "{{ var('silver_dataset',  'silver_dev') }}"
-    # Intermediate models will be created as views in the silver dataset
+      +schema: "{{ var('silver_schema', 'silver_dev') }}"
     intermediate:
       +materialized: view
-      +schema: "{{ var('silver_dataset', 'silver_dev') }}"
-    # Marts models will be created as tables in the gold dataset
+      +schema: "{{ var('silver_schema', 'silver_dev') }}"
     marts:
       +materialized: table
-      +schema: "{{ var('gold_dataset', 'gold_dev') }}"
+      +schema: "{{ var('gold_schema', 'gold_dev') }}"
