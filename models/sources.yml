@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: raw_data
-    schema: "{{ var('bronze_dataset') }}"
+    schema: "bronze_dev"
     description: "Source schema containing raw data from the BigQuery bronze dataset"
     tables:
       - name: actor
