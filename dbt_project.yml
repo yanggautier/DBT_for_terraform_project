@@ -34,10 +34,10 @@ models:
   dbt_gcp_project:
     staging:
       +materialized: view
-      +schema: silver
+      +schema: silver_dev
     intermediate:
       +materialized: view
-      +schema: silver
+      +schema: silver_dev
     marts:
       +materialized: table
-      +schema: gold
+      +schema: gold_dev
