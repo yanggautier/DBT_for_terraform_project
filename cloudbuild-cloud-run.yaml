@@ -82,9 +82,10 @@ steps:
   # Trigger the DAG run
   - name: 'gcr.io/cloud-builders/gcloud'
     args: [
-      'composer', 'dags', 'trigger',
-      '--environment', 'composer-dbt-${_ENVIRONMENT}',
+      'composer', 'environments', 'run',
+      'composer-dbt-${_ENVIRONMENT}',
       '--location', '${_REGION}',
+      'trigger-dag', '--',
       'dbt_run_dag'
     ]
     id: 'trigger-dag'
