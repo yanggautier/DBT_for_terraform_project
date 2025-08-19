@@ -7,7 +7,8 @@ steps:
       - '-c'
       - |
         echo "Running dbt deps to fetch dependencies..."
-        dbt deps --project-dir=/workspace
+        dbt deps --project-dir=/workspace  --vars '{ bronze_dataset: "${_BRONZED_DATASET_NAME}", silver_dataset: "${_SILVER_DATASET_NAME}", gold_dataset: "${_GOLD_DATASET_NAME}"}'
+
     id: 'dbt-deps'
 
   # Build DBT image
@@ -38,7 +39,7 @@ steps:
       - '-c'
       - |
         # Generate DBT documentation in a temporary gcs
-        dbt docs generate --project-dir=/workspace --profiles-dir=app/profiles
+        dbt docs generate --project-dir=/workspace --profiles-dir=app/profiles --vars '{ bronze_dataset: "${_BRONZED_DATASET_NAME}", silver_dataset: "${_SILVER_DATASET_NAME}", gold_dataset: "${_GOLD_DATASET_NAME}"}'
         
         # Copy the generated documentation to a target directory
         gsutil rsync -r target/ gs://${_DOCS_BUCKET_NAME}/
@@ -57,18 +58,19 @@ steps:
         gsutil cp gs://${_COMPOSER_BUCKET_NAME}/dags/dbt_run_dag.py ./dbt_run_dag.py
         
         # Check if the file was downloaded successfully
-        if [ ! -f "dbtrun_dag.py" ]; then
+        if [ ! -f "dbt_run_dag.py" ]; then
           echo "Error: Could not download dbt_run_dag.py from Cloud Composer"
           exit 1
         fi
         
         # Update the image in the DAG file
         echo "Updating DAG with new image"
-        sed -i "s|image=\"[^\"]*dbt[^\"]*\"|image=\"${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt:${COMMIT_SHA}\"|g" dbt_dag.py
-        
+        sed -i "s|image=\"[^\"]*dbt[^\"]*\"|image=\"${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt:${COMMIT_SHA}\"|g" dbt_run_dag.py
+          cmd=[\"dbt\", \"run\", \"--vars\", \"{'bronze_dataset': '${_BRONZE_DATASET_NAME}', 'silver_dataset': '${_SILVER_DATASET_NAME}', 'gold_dataset': '${_GOLD_DATASET_NAME}'}\"] |g" dbt_dag.py
+      
         # Check if the sed command was successful
         echo "=== DAG modifications ==="
-        grep -n "image=" dbt_dag.py || echo "No image lines found"
+        grep -n "image=" dbt_run_dag.py || echo "No image lines found"
         
         # Upload the updated DAG back to Cloud Composer
         echo "Uploading updated DAG to Cloud Composer..."
@@ -97,6 +99,9 @@ substitutions:
   _REPO_NAME: 'dbt-repo-${_ENVIRONMENT}'
   _COMPOSER_BUCKET_NAME: 'composer_bucket-${_ENVIRONMENT}'
   _DOCS_BUCKET_NAME: 'docs_bucket-${_ENVIRONMENT}'
+  _BRONZE_DATASET_NAME: 'bronze_dev'
+  _SILVER_DATASET_NAME: 'silver_dev'
+  _GOLD_DATASET_NAME: 'gold_dev'
 
 # Common environment variables 
 options:
