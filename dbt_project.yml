@@ -45,3 +45,29 @@ models:
     marts:
       +materialized: table
       +schema: "{{ var('gold_dataset') }}"
+
+# Variables for the project
+vars:
+
+  # Environment configuration
+  env: 'dev'
+
+  # Dataset mapping by environmment
+  datasets:
+    dev:
+      bronze: 'bronze_dev'
+      silver: 'silver_dev'
+      gold: 'gold_dev'
+    staging:
+      bronze: 'bronze_staging'
+      silver: 'silver_staging'
+      gold: 'gold_staging'
+    prod:
+      bronze: 'bronze_prod'
+      silver: 'silver_prod'
+      gold: 'gold_prod'
+
+  # Dynamic dataset selection
+  bronze_dataset:  "{{ var('datasets')[target.name]['bronze'] }}"
+  silver_dataset:  "{{ var('datasets')[target.name]['silver'] }}"
+  gold_dataset:  "{{ var('datasets')[target.name]['gold'] }}"

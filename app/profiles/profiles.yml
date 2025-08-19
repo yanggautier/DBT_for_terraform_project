@@ -5,9 +5,7 @@ dbt_gcp_project:
       type: bigquery
       method: oauth
       project: "dbt-project-dvd-rent-464116"
-      bronze_dataset: "bronze_dev"
-      silver_dataset: "silver_dev"
-      gold_dataset: "gold_dev"
+      dataset: "bronze_dev"
       threads: 2
       location: "us-central1"
 
@@ -15,9 +13,7 @@ dbt_gcp_project:
       type: bigquery
       method: oauth
       project: "dbt-project-dvd-rent-464116"
-      bronze_dataset: "bronze_staging"
-      silver_dataset: "silver_staging"
-      gold_dataset: "gold_staging"
+      dataset: "bronze_staging"
       threads: 2
       location: "us-central1"
 
@@ -25,8 +21,6 @@ dbt_gcp_project:
       type: bigquery
       method: oauth
       project: "dbt-project-dvd-rent-464116"
-      bronze_dataset: "bronze_prod"
-      silver_dataset: "silver_prod"
-      gold_dataset: "gold_prod"
-      threads: 4
+      dataset: "bronze_prod"
+      threads: 2
       location: "us-central1"
