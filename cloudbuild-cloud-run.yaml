@@ -72,7 +72,7 @@ steps:
         
         # Upload the updated DAG back to Cloud Composer
         echo "Uploading updated DAG to Cloud Composer..."
-        gsutil cp dbt_dag.py gs://${_COMPOSER_BUCKET_NAME}/dags/
+        gsutil cp dbt_run_dag.py gs://${_COMPOSER_BUCKET_NAME}/dags/
         
         echo "DAG update completed successfully!"
     id: 'update-dag'
