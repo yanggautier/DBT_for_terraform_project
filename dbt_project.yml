@@ -27,6 +27,7 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+# The 'vars' section should be at the same indentation level as 'name', 'profile', etc.
 vars:
   bronze_dataset: "{{ 'bronze_prod' if target.name == 'prod' else 'bronze_staging' if target.name == 'staging' else 'bronze_dev' }}"
   silver_dataset: "{{ 'silver_prod' if target.name == 'prod' else 'silver_staging' if target.name == 'staging' else 'silver_dev' }}"
