@@ -85,7 +85,8 @@ steps:
       'composer', 'environments', 'run',
       'composer-dbt-${_ENVIRONMENT}',
       '--location', '${_REGION}',
-      'trigger_dag', '--',
+      dags', 'trigger',
+      '--',
       'dbt_run_dag'
     ]
     id: 'trigger-dag'
