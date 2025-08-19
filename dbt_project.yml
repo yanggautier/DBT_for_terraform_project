@@ -36,17 +36,12 @@ models:
     # Staging models will be created as views in the silver dataset
     staging:
       +materialized: view
-      +schema: 'silver_{{ var.env }}' 
+      +schema: "{{ var('silver_dataset') }}"
     # Intermediate models will be creaàted as views in the silver dataset
     intermediate:
       +materialized: view
-      +schema: 'silver_{{ var.env }}'
+      +schema: "{{ var('silver_dataset') }}"
     # Marts models will be created as tables in the gold dataset      
     marts:
       +materialized: table
-      +schema: 'gold_{{ var.env }}'
-
-
-# This section is for variables that you want to use in your dbt project.
-vars:
-  env: 'dev'
+      +schema: "{{ var('gold_dataset') }}"
