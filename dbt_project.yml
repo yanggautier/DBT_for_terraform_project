@@ -37,7 +37,7 @@ models:
     staging:
       +materialized: view
       +schema: 'silver_{{ var.env }}' 
-    # Intermediate models will be created as views in the silver dataset
+    # Intermediate models will be creaàted as views in the silver dataset
     intermediate:
       +materialized: view
       +schema: 'silver_{{ var.env }}'
