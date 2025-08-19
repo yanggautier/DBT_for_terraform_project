@@ -10,6 +10,15 @@ RUN pip install --no-cache-dir \
     dbt-core==1.10.0 \
     pytz==2024.1
 
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -sSL https://sdk.cloud.google.com | bash -s -- --disable-prompts
+
+ENV PATH $PATH:/root/google-cloud-sdk/bin
+
 # Create user and group for dbt
 RUN groupadd -r dbt && useradd -r -g dbt -u 1000 dbt
 
