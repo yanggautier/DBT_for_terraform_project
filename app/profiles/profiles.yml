@@ -8,11 +8,6 @@ dbt_gcp_project:
       dataset: "bronze_dev"
       threads: 2
       location: "us-central1"
-      vars:
-        bronze_dataset: bronze_dev
-        silver_dataset: silver_dev
-        gold_dataset: gold_dev
-
 
     staging:
       type: bigquery
@@ -21,19 +16,11 @@ dbt_gcp_project:
       dataset: "bronze_staging"
       threads: 2
       location: "us-central1"
-      vars:
-        bronze_dataset: bronze_staging
-        silver_dataset: silver_staging
-        gold_dataset: gold_staging
 
     prod:
       type: bigquery
       method: oauth
       project: "dbt-project-dvd-rent-464116"
       dataset: "bronze_prod"
-      threads: 2
+      threads: 4
       location: "us-central1"
-      vars:
-        bronze_dataset: bronze_prod
-        silver_dataset: silver_prod
-        gold_dataset: gold_prod

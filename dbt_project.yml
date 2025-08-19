@@ -34,10 +34,10 @@ models:
   dbt_gcp_project:
     staging:
       +materialized: view
-      +schema: "{{ var('silver_schema', 'silver_dev') }}"
+      +schema: silver
     intermediate:
       +materialized: view
-      +schema: "{{ var('silver_schema', 'silver_dev') }}"
+      +schema: silver
     marts:
       +materialized: table
-      +schema: "{{ var('gold_schema', 'gold_dev') }}"
+      +schema: gold
