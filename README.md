@@ -75,7 +75,7 @@ The pipeline uses substitutions for environment-specific configurations:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `_REGION` | GCP region | `europe-west1` |
+| `_REGION` | GCP region | `us-central1` |
 | `_PROJECT_ID` | GCP project ID | `my-project` |
 | `_ENVIRONMENT` | Environment (dev/staging/prod) | `dev` |
 | `_REPO_NAME` | Artifact Registry repository | `dbt-repo-dev` |
