@@ -24,6 +24,10 @@ The deployment pipeline consists of the following stages:
 4. **DAG Update**: Downloads existing DAG from Cloud Composer, updates image reference, and uploads back
 5. **Pipeline Trigger**: Initiates the updated DBT DAG run in Cloud Composer
 
+
+## Sources of data
+Sample of DVD rental dataset
+
 ## Prerequisites
 
 ### Infrastructure Requirements
