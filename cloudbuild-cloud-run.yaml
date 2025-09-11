@@ -64,8 +64,8 @@ steps:
         
         # Update the image in the DAG file
         echo "Updating DAG with new image"
-        sed -i "s#image=\"${DBT_CUSTOM_IMAGE:-${DBT_DEFAULT_IMAGE}}\"#image=\"${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/dbt:${COMMIT_SHA}\", cmd=[\"dbt\", \"run\", \"--vars\", \"{'bronze_dataset': '${_BRONZE_DATASET_NAME}', 'silver_dataset': '${_SILVER_DATASET_NAME}', 'gold_dataset': '${_GOLD_DATASET_NAME}'}\"]#g" dbt_run_dag.py
-
+        sed -i 's#image="[^"]*"#image="'"${_REGION}"'-docker.pkg.dev/'"${_PROJECT_ID}"'/'"${_REPO_NAME}"'/dbt:'"${COMMIT_SHA}"'", cmd=["dbt", "run", "--vars", "{'"'bronze_dataset'": "'"${_BRONZE_DATASET_NAME}"'", "'"'silver_dataset'": "'"${_SILVER_DATASET_NAME}"'", "'"'gold_dataset'": "'"${_GOLD_DATASET_NAME}"'"}'}"]#g' dbt_run_dag.py
+        
         # Check if the sed command was successful
         echo "=== DAG modifications ==="
         grep -n "image=" dbt_run_dag.py || echo "No image lines found"
